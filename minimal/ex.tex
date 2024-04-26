@@ -1,0 +1,26 @@
+\DocumentMetadata{
+    pdfversion=1.7,
+    pdfstandard=A-3b,
+}
+\documentclass{article}
+
+\usepackage{embedfile}
+\embedfilesetup{     
+      filesystem=URL,
+      mimetype=application/octet-stream,
+      afrelationship={/Data},
+      stringmethod=escape
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+}
+
+\begin{document}
+
+  You can check that this PDF document complies with the PDF/A-3 standard by using the \href{https://verapdf.org/}{veraPDF} tool. A text file, \verb|attachme.txt|, is attached to this PDF document. 
+
+  \embedfile{attachme.txt}
+\end{document}
