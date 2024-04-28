@@ -12,15 +12,10 @@
       stringmethod=escape
 }
 
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    urlcolor=blue
-}
-
 \begin{document}
 
-  You can check that this PDF document complies with the PDF/A-3 standard by using the \href{https://verapdf.org/}{veraPDF} tool. A text file, \verb|attachme.txt|, is attached to this PDF document. 
+You can check that this PDF document complies with the PDF/A-3 standard by using the veraPDF tool. A text file, \texttt{attachme.txt}, is embedded in the PDF document. 
 
-  \embedfile{attachme.txt}
+\embedfile{attachme.txt}
+
 \end{document}
