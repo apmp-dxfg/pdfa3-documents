@@ -1,0 +1,76 @@
+\DocumentMetadata{
+    pdfversion=1.7,
+    pdfstandard=A-3b,
+}
+\documentclass[11pt,a4paper]{article}
+
+% Set the paper size to A4 with 2 cm margins on all sides
+\usepackage[a4paper,margin=20mm]{geometry}
+
+%% These two packages allow the PDF artwork to be loaded
+%% in the background for the title page
+\usepackage{pdfpages}
+\usepackage{eso-pic}
+
+%% These three packages together set up STIX fonts 
+%% alongside Helvetica
+\usepackage[T1]{fontenc}
+\usepackage[scaled]{helvet}
+\usepackage{stix}           
+
+%% Define variables for the report title and number
+\makeatletter
+\def\reportnumber#1{\gdef\@reportnumber{#1}}
+\newcommand{\ReportNumber}{\@reportnumber}
+\def\reporttitle#1{\gdef\@reporttitle{#1}}
+\newcommand{\ReportTitle}{\@reporttitle}
+\makeatother
+
+%% This package finds the number of pages in a document.
+%% The complier must be run twice to find the LastPage number.
+\usepackage{lastpage}       
+\newcommand{\thispageof}{Page~\thepage~of~\pageref*{LastPage}}
+
+%% A command to produce the title page
+\newcommand{\maketitlepage}{%
+
+    % Supress header and footer 
+    \thispagestyle{empty}    
+
+    % Page 1 of N is written at the top left
+    \thispageof
+    
+    % A 50 mm vertical space is inserted before writing
+    % the report title in a large font size 
+    \vspace*{50mm}
+    \textbf{\huge \ReportTitle}
+
+    \vspace{5mm}
+    \textnormal{\LARGE Thesis Subtitle}
+            
+    \vspace{1.5cm}
+    \textnormal{A thesis presented for the degree of Doctor of Philosophy}\\
+    \textnormal{The report number is \ReportNumber}
+    
+    % Load the background image
+    \AddToShipoutPictureBG*{%
+        \includegraphics[scale=1]{LMI_cover.pdf}
+    }
+    % These commands must come after everything else.
+    % They insert the background image and signal that 
+    % the page is completed. 
+    \ClearShipoutPicture
+    \clearpage
+}
+
+%% Do not indent the first line of new paragraphs
+\setlength{\parindent}{0pt}
+
+%% These details could also come after \begin{document}
+\reportnumber{12345} % Usage example
+\reporttitle{Thesis Title}
+
+\begin{document}
+\maketitlepage
+
+\end{document}
