@@ -4,11 +4,12 @@
 }
 \documentclass[11pt,a4paper]{article}
 
-% Set the paper size to A4 with 25 cm margins on all sides
+% Set the paper size and margins 
 \usepackage[
     a4paper,
-    headheight=30pt,
-    margin=25mm]{geometry}
+    headheight=2\baselineskip,
+    hmargin=25mm,
+    vmargin=30mm]{geometry}
 
 %% These three packages together set up STIX fonts 
 %% alongside Helvetica
@@ -33,7 +34,6 @@
 \def\reporttitle#1{\gdef\@reporttitle{#1}}
 \newcommand{\ReportTitle}{\@reporttitle}
 \newcommand{\ReportReference}{Report No.\xspace \@reportnumber, \@date\xspace}
-\newcommand{\LMI}{Lunar Metrology Institute}
 \makeatother
 
 %% This package finds the number of pages in a document.
@@ -55,25 +55,23 @@
 
 %% Set up a header and footer
 \usepackage{fancyhdr}
- \renewcommand{\headrulewidth}{0pt}  % Supress a line ruled by fancyhdr
- \lhead{
-    \fancyplain{} {%
-        \small{\centering\textbf{\LMI} \\ 
-        \vspace{.5\baselineskip}
-        \ReportReference}
-    }
- }
- \cfoot{
-    \fancyplain{} {%
-        \small\textit{This report may not be reproduced, except in full, without the written consent of the\\
-        Chief Metrologist, Lunar Metrology Institute}
-    }
- }
- \rhead{ \fancyplain{}{\thispageof} }
- \lfoot{}
- \rfoot{}
+\fancypagestyle{fancy}{%
+    \renewcommand{\headrulewidth}{0pt}  % Supress a line ruled by fancyhdr
+    \fancyhf{}
+    \fancyhead[L]{\small\textnormal{\ReportReference}}
+    \fancyhead[C]{\small\textbf{\LMI}\\}
+    \fancyhead[R]{\small\textnormal{\thispageof}}
+    \fancyfoot[C]{\small\textit{\RestrictionsLMI}}
+}
 
-% A useful reference to the GUM
+% Pre-defined strings
+\newcommand{\LMI}{Lunar Metrology Institute}
+
+\newcommand{\RestrictionsLMI}{%
+This report may not be reproduced, 
+except in full, without the written consent of the\\
+Chief Metrologist, Lunar Metrology Institute}
+
 \newcommand{\referenceGUM}{
 For information about uncertainty terminology, see: 
 BIPM, IEC, IFCC, ISO, IUPAC, IUPAP and OIML, 
@@ -142,7 +140,7 @@ A PDF version is available on-line:
 \date{\today}
 
 \begin{document}
-\pagestyle{fancyplain}
+\pagestyle{fancy}
 \raggedright        % Does not adjust the right margin
 	
 % Possible section headings: Description, Identification, Client
