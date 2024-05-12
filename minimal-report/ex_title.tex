@@ -4,8 +4,11 @@
 }
 \documentclass[11pt,a4paper]{article}
 
-% Set the paper size to A4 with 2 cm margins on all sides
-\usepackage[a4paper,margin=20mm]{geometry}
+% Set the paper size to A4 with 25 cm margins on all sides
+\usepackage[
+    a4paper,
+    headheight=30pt,
+    margin=25mm]{geometry}
 
 %% These two packages allow the PDF artwork to be loaded
 %% in the background for the title page
@@ -63,8 +66,8 @@
     \clearpage
 }
 
-%% Do not indent the first line of new paragraphs
-\setlength{\parindent}{0pt}
+%% Paragraph formatting
+\usepackage{parskip}         
 
 %% These details could also come after \begin{document}
 \reportnumber{12345} % Usage example
