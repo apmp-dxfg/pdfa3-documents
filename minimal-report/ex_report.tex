@@ -25,6 +25,12 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 
+%% To make captions without using LaFeX figure or table environments 
+\usepackage{capt-of}
+
+%% For including images
+\usepackage{graphicx}
+
 %% Define variables for the report title and number
 \usepackage{xspace}
 
@@ -88,11 +94,11 @@ A PDF version is available on-line:
     \end{center}
 }
 
-%% These two packages allow the PDF artwork to be loaded
-%% in the background for the title page
+%% Packages to load the PDF artwork for the title page
 \usepackage{pdfpages}
 \usepackage{eso-pic}
-%% A command to produce the title page
+
+%% Produce the title page
 \newcommand{\maketitlepage}{%
 
     % Supress header and footer 
@@ -270,4 +276,13 @@ Some of the expanded uncertainty values reported fall outside LNI's current scop
 % A \paragraph is a lower heirarchy section. The 'heading' text will be in bold
 % and the 'body' text will follow on the same line.
 \paragraph{Note:} \referenceGUM	% Standard reference to the GUM
+
+\vspace{4\baselineskip}
+\begin{minipage}{\textwidth}
+\begin{description}
+    \item[Prepared by:] Luke Skywalker
+    \item[Checked by:] Han Solo
+    \item[Issued by:] Princess Leia Organa
+\end{description}   
+\end{minipage}
 \end{document}

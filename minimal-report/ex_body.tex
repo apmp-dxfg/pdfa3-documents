@@ -25,6 +25,12 @@
 \usepackage{amsmath}
 \usepackage{siunitx}
 
+%% To make captions without using LaFeX figure or table environments 
+\usepackage{capt-of}
+
+%% For including images
+\usepackage{graphicx}
+
 %% Define variables for the report title and number
 \usepackage{xspace}
 
@@ -133,6 +139,67 @@ A PDF version is available on-line:
 \titlespacing*{\subsubsection}
     {0pt}{\parskip}{0.1\baselineskip}
 
+%% For signature images
+\newcommand{\signatureA}[1]{
+    \renewcommand{\signatureA}{
+    \includegraphics{#1}  
+    }
+}
+\newcommand{\signatureB}[1]{
+    \renewcommand{\signatureB}{
+    \includegraphics{#1}  
+    }
+}
+
+\newcommand{\signatureAName}[1]{\renewcommand{\signatureAName}{#1}}
+\newcommand{\signatureBName}[1]{\renewcommand{\signatureBName}{#1}}
+
+\newcommand{\signatureARole}[1]{\renewcommand{\signatureARole}{#1}}
+\newcommand{\signatureBRole}[1]{\renewcommand{\signatureBRole}{#1}}
+
+\newcommand{\chiefMetrologistName}[1]{
+	\renewcommand{\chiefMetrologistName}{#1} 
+	\newcommand{\chiefMetrologistRole}{Chief Metrologist}   
+}
+
+\newcommand{\chiefMetrologistDelegate}[1]{
+	\renewcommand{\chiefMetrologistName}{#1} 
+	\newcommand{\chiefMetrologistRole}{For the Chief Metrologist}   
+}
+
+
+%\newcommand{\signaturesABImages}{%
+%    \vspace*{4\baselineskip}
+%	\begin{center}
+%		\begin{minipage}{\textwidth}
+%			\begin{tabbing}
+%				\hspace{5.5cm}  \= \hspace{5.5cm}  \=  \\
+%
+%			    \signatureA \> \signatureB \\
+%			    
+%				\rule{4cm}{.1pt} 
+%					\> \rule{4cm}{.1pt} 
+%						\> \rule{4cm}{.1pt} \\
+%		
+%				\signatureAName \> \signatureBName \> \chiefMetrologistName \\
+%				\signatureARole \> \signatureBRole \> \chiefMetrologistRole                
+%			\end{tabbing}
+%		\end{minipage}
+%	\end{center}
+%}
+%
+\newcommand{\signaturesAB}{%
+    \vspace*{4\baselineskip}
+	\begin{center}
+		\begin{minipage}{\textwidth}
+		\begin{description}
+		    \item[\signatureARole\;] \signatureAName
+		    \item[\signatureBRole\:] \signatureBName
+		    \item[\chiefMetrologistRole\:] \chiefMetrologistName
+		\end{description}
+		\end{minipage}
+	\end{center}
+}
 
 %% These details could also come after \begin{document}
 \reportnumber{12345} % Usage example
@@ -166,7 +233,7 @@ Ambient temperature was maintained within $\SI{\pm 1}{\celsius}$ of $\SI{-123}{\
 Measurements of the voltage reflection coefficient were made according to procedure LMIT.E.063.005. 
 
 \section{Results}
-Results are reported in polar coordinates (magnitude, $\rho$, and phase, $\phi$), using a linear scale for magnitude and units of degrees for phase. 
+Results in fig~\ref{fig1} are reported in polar coordinates (magnitude, $\rho$, and phase, $\phi$), using a linear scale for magnitude and units of degrees for phase. 
 
 % Although not used here, it is also possible to have a \subsubsection{}
 \subsection{Open (male), SN 54673}
@@ -221,6 +288,8 @@ Results are reported in polar coordinates (magnitude, $\rho$, and phase, $\phi$)
 		
 		\end{array}
 	\]
+	\captionof{figure}{My figure}
+	\label{fig1}     % Must follow \captionof
 	
 \end{singlespace}
 \end{center}
@@ -234,4 +303,14 @@ Some of the expanded uncertainty values reported fall outside LNI's current scop
 % A \paragraph is a lower heirarchy section. The 'heading' text will be in bold
 % and the 'body' text will follow on the same line.
 \paragraph{Note:} \referenceGUM	% Standard reference to the GUM
+
+%%\signatureA{./BH2.png}
+%%\signatureB{./KJ.png}
+\signatureAName{Blair Hall}
+\signatureBName{Keith Jones} 
+\signatureARole{Principal Research Scientist}
+\signatureBRole{Distinguished Scientist}
+%\chiefMetrologist{}
+\chiefMetrologistDelegate{Mark Clarkson}
+\signaturesAB
 \end{document}
