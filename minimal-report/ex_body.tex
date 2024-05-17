@@ -35,11 +35,9 @@
 \usepackage{xspace}
 
 \makeatletter
-\def\reportnumber#1{\gdef\@reportnumber{#1}}
-\newcommand{\ReportNumber}{\@reportnumber}
-\def\reporttitle#1{\gdef\@reporttitle{#1}}
-\newcommand{\ReportTitle}{\@reporttitle}
-\newcommand{\ReportReference}{Report No.\xspace \@reportnumber, \@date\xspace}
+\newcommand{\ReportNumber}[1]{\renewcommand{\ReportNumber}{#1}}
+\newcommand{\ReportTitle}[1]{\renewcommand{\ReportTitle}{#1}}
+\newcommand{\ReportReference}{Report No.\xspace \ReportNumber, \@date\xspace}
 \makeatother
 
 %% This package finds the number of pages in a document.
@@ -139,71 +137,16 @@ A PDF version is available on-line:
 \titlespacing*{\subsubsection}
     {0pt}{\parskip}{0.1\baselineskip}
 
-%% For signature images
-\newcommand{\signatureA}[1]{
-    \renewcommand{\signatureA}{
-    \includegraphics{#1}  
-    }
-}
-\newcommand{\signatureB}[1]{
-    \renewcommand{\signatureB}{
-    \includegraphics{#1}  
-    }
-}
-
-\newcommand{\signatureAName}[1]{\renewcommand{\signatureAName}{#1}}
-\newcommand{\signatureBName}[1]{\renewcommand{\signatureBName}{#1}}
-
-\newcommand{\signatureARole}[1]{\renewcommand{\signatureARole}{#1}}
-\newcommand{\signatureBRole}[1]{\renewcommand{\signatureBRole}{#1}}
-
-\newcommand{\chiefMetrologistName}[1]{
-	\renewcommand{\chiefMetrologistName}{#1} 
-	\newcommand{\chiefMetrologistRole}{Chief Metrologist}   
-}
-
-\newcommand{\chiefMetrologistDelegate}[1]{
-	\renewcommand{\chiefMetrologistName}{#1} 
-	\newcommand{\chiefMetrologistRole}{For the Chief Metrologist}   
-}
-
-
-%\newcommand{\signaturesABImages}{%
-%    \vspace*{4\baselineskip}
-%	\begin{center}
-%		\begin{minipage}{\textwidth}
-%			\begin{tabbing}
-%				\hspace{5.5cm}  \= \hspace{5.5cm}  \=  \\
-%
-%			    \signatureA \> \signatureB \\
-%			    
-%				\rule{4cm}{.1pt} 
-%					\> \rule{4cm}{.1pt} 
-%						\> \rule{4cm}{.1pt} \\
-%		
-%				\signatureAName \> \signatureBName \> \chiefMetrologistName \\
-%				\signatureARole \> \signatureBRole \> \chiefMetrologistRole                
-%			\end{tabbing}
-%		\end{minipage}
-%	\end{center}
-%}
-%
-\newcommand{\signaturesAB}{%
-    \vspace*{4\baselineskip}
-	\begin{center}
-		\begin{minipage}{\textwidth}
-		\begin{description}
-		    \item[\signatureARole\;] \signatureAName
-		    \item[\signatureBRole\:] \signatureBName
-		    \item[\chiefMetrologistRole\:] \chiefMetrologistName
-		\end{description}
-		\end{minipage}
-	\end{center}
+\usepackage{embedfile}
+\embedfilesetup{     
+      filesystem=URL,
+      afrelationship={/Data},
+      stringmethod=escape
 }
 
 %% These details could also come after \begin{document}
-\reportnumber{12345} % Usage example
-\reporttitle{Thesis Title}
+\ReportNumber{12345} % Usage example
+\ReportTitle{Thesis Title}
 \date{\today}
 
 \begin{document}
@@ -288,7 +231,7 @@ Results in fig~\ref{fig1} are reported in polar coordinates (magnitude, $\rho$, 
 		
 		\end{array}
 	\]
-	\captionof{figure}{My figure}
+	\captionof{figure}{Magnitude and phase data}
 	\label{fig1}     % Must follow \captionof
 	
 \end{singlespace}
@@ -304,13 +247,5 @@ Some of the expanded uncertainty values reported fall outside LNI's current scop
 % and the 'body' text will follow on the same line.
 \paragraph{Note:} \referenceGUM	% Standard reference to the GUM
 
-%%\signatureA{./BH2.png}
-%%\signatureB{./KJ.png}
-\signatureAName{Blair Hall}
-\signatureBName{Keith Jones} 
-\signatureARole{Principal Research Scientist}
-\signatureBRole{Distinguished Scientist}
-%\chiefMetrologist{}
-\chiefMetrologistDelegate{Mark Clarkson}
-\signaturesAB
+\embedfile[mimetype=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]{ex_data.xlsx}
 \end{document}

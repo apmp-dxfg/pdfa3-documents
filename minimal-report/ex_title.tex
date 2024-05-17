@@ -21,18 +21,30 @@
 \usepackage[scaled]{helvet}
 \usepackage{stix}           
 
+\usepackage{xspace}
+
 %% Define variables for the report title and number
 \makeatletter
-\def\reportnumber#1{\gdef\@reportnumber{#1}}
-\newcommand{\ReportNumber}{\@reportnumber}
-\def\reporttitle#1{\gdef\@reporttitle{#1}}
-\newcommand{\ReportTitle}{\@reporttitle}
+\newcommand{\ReportNumber}[1]{\renewcommand{\ReportNumber}{#1}}
+\newcommand{\ReportTitle}[1]{\renewcommand{\ReportTitle}{#1}}
+\newcommand{\ReportReference}{Report No.\xspace \ReportNumber, \@date\xspace}
+\newcommand{\Metrologist}[1]{\renewcommand{\Metrologist}{#1}}
+\newcommand{\ChiefMetrologist}[1]{\renewcommand{\ChiefMetrologist}{#1}}
 \makeatother
+
+%% Paragraph formatting
+\usepackage{parskip}         
 
 %% This package finds the number of pages in a document.
 %% The complier must be run twice to find the LastPage number.
 \usepackage{lastpage}       
 \newcommand{\thispageof}{Page~\thepage~of~\pageref*{LastPage}}
+
+%% This command composes shows who has been involved in the report. 
+\newcommand{\MetrologyTeam}{
+           \Metrologist \\
+    \textbf{Authorised by:} \> \ChiefMetrologist
+}
 
 %% A command to produce the title page
 \newcommand{\maketitlepage}{%
@@ -43,17 +55,24 @@
     % Page 1 of N is written at the top left
     \thispageof
     
-    % A 50 mm vertical space is inserted before writing
+    % A vertical space is inserted before writing
     % the report title in a large font size 
     \vspace*{50mm}
-    \textbf{\huge \ReportTitle}
+    \textbf{\huge \ReportTitle}\\
 
-    \vspace{5mm}
-    \textnormal{\LARGE Thesis Subtitle}
-            
-    \vspace{1.5cm}
-    \textnormal{A thesis presented for the degree of Doctor of Philosophy}\\
-    \textnormal{The report number is \ReportNumber}
+    \vspace{\baselineskip}
+    \textbf{\LARGE \ReportReference}
+    
+    \vspace{\baselineskip}
+    
+    \begin{minipage}{\textwidth}
+    \begin{tabbing}
+        \textbf{Prepared by:}\hspace{5mm} \= 
+        \MetrologyTeam
+    \end{tabbing}   
+    \end{minipage}
+
+    \vfill
     
     % Load the background image
     \AddToShipoutPictureBG*{%
@@ -66,12 +85,12 @@
     \clearpage
 }
 
-%% Paragraph formatting
-\usepackage{parskip}         
-
-%% These details could also come after \begin{document}
-\reportnumber{12345} % Usage example
-\reporttitle{Thesis Title}
+%% 
+\Metrologist{Luke Skywalker}
+\ChiefMetrologist{Princess Leia Organa}
+\ReportNumber{12345} % Usage example
+\ReportTitle{A report on the calibration of an type-N male open}
+\date{17 May 2025}
 
 \begin{document}
 \maketitlepage
