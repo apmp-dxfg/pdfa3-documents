@@ -20,13 +20,20 @@
 \usepackage[UKenglish]{babel} % British English conventions
 \usepackage[UKenglish,cleanlook]{isodate}   % Date format: day month year
 
-%% For mathematical expresions and units
+%% For mathematical expressions and units
 \usepackage{upgreek}
 \usepackage{amsmath}
 \usepackage{siunitx}
 
-%% To make captions without using LaFeX figure or table environments 
+%% Make captions without using LaTeX floating figure or table environments 
 \usepackage{capt-of}
+\newcommand{\LMICaption}[3]{
+    \begin{minipage}{.8\textwidth}        
+        \captionof{#1}{\small #3}
+        \label{#2}     
+    \end{minipage}
+    \vspace{.5\baselineskip}
+}
 
 %% For including images
 \usepackage{graphicx}
@@ -114,7 +121,7 @@ A PDF version is available on-line:
 \newcommand{\lmiboldarialsnarrowlanted}{\usefont{T1}{phv}{bc}{sl}}
 
 %% Define the layout of section headings
-%% We we would like special fonts and no section numbers 
+%% We would like to use special fonts and no section numbers 
 \usepackage{titlesec}
 %% Command formats:
 %% \titleformat{<command>}[<shape>]{<format>}
@@ -125,18 +132,19 @@ A PDF version is available on-line:
 \titleformat{\section}
   {\lmiboldarialnarrow\Large}{}{0pt}{}
 \titlespacing*{\section}
-  {0pt}{\parskip}{0.5\baselineskip} 
+  {0pt}{\baselineskip}{0.5\baselineskip} 
 
 \titleformat{\subsection}
-    {\lmiboldarialnarrow\large}{}{0.5em}{\vspace{.5em}}
+    {\lmiboldarialnarrow\large}{}{0.5em}{}
 \titlespacing*{\subsection}
-    {0pt}{2\parskip}{0.1\baselineskip}
+    {0pt}{\baselineskip}{0pt}
 
 \titleformat{\subsubsection}
-    {\lmiboldarialsnarrowlanted\normalsize}{}{0.5em}{\vspace{.25em}}
+    {\lmiboldarialsnarrowlanted\normalsize}{}{0.5em}{}
 \titlespacing*{\subsubsection}
-    {0pt}{\parskip}{0.1\baselineskip}
+    {0pt}{\baselineskip}{0pt}
 
+%% For embedded files
 \usepackage{embedfile}
 \embedfilesetup{     
       filesystem=URL,
@@ -144,19 +152,25 @@ A PDF version is available on-line:
       stringmethod=escape
 }
 
-%% These details could also come after \begin{document}
-\ReportNumber{12345} % Usage example
-\ReportTitle{Thesis Title}
-\date{\today}
+%% These details come before \begin{document}
+\ReportNumber{12345} 
+\ReportTitle{A report on the calibration of an type-N male open}
+\date{17 May 2035}
+
+%% XMP Metadata
+\hypersetup{
+    pdftitle={\ReportTitle},
+    pdfauthor={\LMI},
+    pdfnumpages={\pageref*{LastPage}}
+}
 
 \begin{document}
 \pagestyle{fancy}
 \raggedright        % Does not adjust the right margin
+
+\vspace*{4\baselineskip}
+\textbf{\LARGE\ReportTitle}    
 	
-% Possible section headings: Description, Identification, Client
-% Reference, Date(s) of Calibration (of Test), Objective
-% Method, Conditions, Notes, Results, Uncertainty, Conclusion
-%
 \section{Description}
 The components are from a USC vector network analyser calibration kit model 8599. 
 
@@ -167,27 +181,22 @@ The component serial number is 2221X.
 United Spacecraft Corporation, 51 Mare Tranquillitatis, The Moon.
 
 \section{Date of Calibration}
-The measurements were performed on the 7$^\mathrm{th}$ of February 2025.
+The measurements were performed on February 7\textsuperscript{th}, 2035.
 
 \section{Conditions}
-Ambient temperature was maintained within $\SI{\pm 1}{\celsius}$ of $\SI{-123}{\celsius}$.
+Ambient temperature was maintained within \SI{\pm 1}{\celsius} of \SI{-123}{\celsius}.
 
 \section{Method}
 Measurements of the voltage reflection coefficient were made according to procedure LMIT.E.063.005. 
 
+\clearpage    % Anticipate the page break
 \section{Results}
-Results in fig~\ref{fig1} are reported in polar coordinates (magnitude, $\rho$, and phase, $\phi$), using a linear scale for magnitude and units of degrees for phase. 
 
-% Although not used here, it is also possible to have a \subsubsection{}
 \subsection{Open (male), SN 54673}
 
- \begin{center} % Centered horizontally on the page
- 
- % The report text has 1.5 line spacing, 
- % but that is too wide for tables 
- \begin{singlespace}
- 
- 	\small	% use a smaller font size for the table entries
+\begin{center} 
+\begin{singlespace}
+ 	\small	% smaller font size for the table entries
  
   	% Increases the vertical spacing between rows slightly  
   	\setlength{\extrarowheight}{3pt}
@@ -203,9 +212,9 @@ Results in fig~\ref{fig1} are reported in polar coordinates (magnitude, $\rho$, 
     		\multicolumn{2}{c}{ \text{phase} } 
     		\\
 		% 2nd line 
-    		\multicolumn{1}{c}{ \si{(MHz)} } &  
-    		\multicolumn{2}{c}{ (\text{linear}) } &
-    		\multicolumn{2}{c}{ \text{(/degree)} }  
+    		\multicolumn{1}{c}{ (/\si{\mega\hertz}) } &  
+    		\multicolumn{2}{c}{  } &
+    		\multicolumn{2}{c}{ (/\si{\degree}) } 
     		\\
   		% 3rd line 
      		& {\rho} & {U(\rho)} & {\phi} & {U(\phi)} 
@@ -231,21 +240,25 @@ Results in fig~\ref{fig1} are reported in polar coordinates (magnitude, $\rho$, 
 		
 		\end{array}
 	\]
-	\captionof{figure}{Magnitude and phase data}
-	\label{fig1}     % Must follow \captionof
+	\LMICaption{table}{tab1}{%
+Magnitude and phase data, using a linear scale for magnitude and units of degrees for phase. 
+Expanded uncertainties decorated by a $\dagger$ fall outside the scope of accreditation (see Uncertainty section).
+}
 	
 \end{singlespace}
 \end{center}
 
 
 \section{Uncertainty}
-A coverage factor $k=1.96$ was used to calculate the expanded uncertainties $U(\cdot)$ at a level of confidence of approximately 95\%. The number of degrees of freedom associated with each measurement result was large enough to justify this coverage factor.  
+A coverage factor $k=1.96$ was used to calculate the expanded uncertainties $U(\cdot)$ at a level of confidence of approximately \SI{95}{\percent}. 
+The number of degrees of freedom associated with each measurement result was large enough to justify this coverage factor.  
 
-Some of the expanded uncertainty values reported fall outside LNI's current scope of accreditation. These values are indicated by a $\dagger$. The least expanded uncertainty for a magnitude measurement close to unity in the LNI scope is currently 0.0024. 
+Some of the expanded uncertainty values reported fall outside LMI's current scope of accreditation. 
+These values are decorated by a $\dagger$ in Table~\ref{tab1}. 
+The least expanded uncertainty for a measured magnitude close to unity in the LMI scope of accreditation is currently 0.0024. 
 
-% A \paragraph is a lower heirarchy section. The 'heading' text will be in bold
-% and the 'body' text will follow on the same line.
 \paragraph{Note:} \referenceGUM	% Standard reference to the GUM
 
 \embedfile[mimetype=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]{ex_data.xlsx}
+
 \end{document}

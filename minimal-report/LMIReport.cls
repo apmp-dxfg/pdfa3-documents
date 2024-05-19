@@ -187,18 +187,19 @@ A PDF version is available on-line:
 \titleformat{\section}
   {\lmiboldarialnarrow\Large}{}{0pt}{}
 \titlespacing*{\section}
-  {0pt}{\parskip}{0.5\baselineskip} 
+  {0pt}{\baselineskip}{0.5\baselineskip} 
 
 \titleformat{\subsection}
-    {\lmiboldarialnarrow\large}{}{0.5em}{\vspace{.5em}}
+    {\lmiboldarialnarrow\large}{}{0.5em}{}
 \titlespacing*{\subsection}
-    {0pt}{2\parskip}{0.1\baselineskip}
+    {0pt}{\baselineskip}{0pt}
 
 \titleformat{\subsubsection}
-    {\lmiboldarialsnarrowlanted\normalsize}{}{0.5em}{\vspace{.25em}}
+    {\lmiboldarialsnarrowlanted\normalsize}{}{0.5em}{}
 \titlespacing*{\subsubsection}
-    {0pt}{\parskip}{0.1\baselineskip}
+    {0pt}{\baselineskip}{0pt}
 
+%% For embedded files
 \RequirePackage{embedfile}
 \embedfilesetup{     
       filesystem=URL,

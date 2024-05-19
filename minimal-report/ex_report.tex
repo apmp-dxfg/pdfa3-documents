@@ -11,10 +11,6 @@
 \date{17 May 2035}
 
 \begin{document}	
-% Possible section headings: Description, Identification, Client
-% Reference, Date(s) of Calibration (of Test), Objective
-% Method, Conditions, Notes, Results, Uncertainty, Conclusion
-%
 \section{Description}
 The components are from a USC vector network analyser calibration kit model 8599. 
 
@@ -25,10 +21,10 @@ The component serial number is 2221X.
 United Spacecraft Corporation, 51 Mare Tranquillitatis, The Moon.
 
 \section{Date of Calibration}
-The measurements were performed on the 7$^\mathrm{th}$ of February 2035.
+The measurements were performed on February 7\textsuperscript{th}, 2035.
 
 \section{Conditions}
-Ambient temperature was maintained within $\SI{\pm 1}{\celsius}$ of $\SI{-123}{\celsius}$.
+Ambient temperature was maintained within \SI{\pm 1}{\celsius} of \SI{-123}{\celsius}.
 
 \section{Method}
 Measurements of the voltage reflection coefficient were made according to procedure LMIT.E.063.005. 
@@ -40,12 +36,9 @@ Measurements of the voltage reflection coefficient were made according to proced
 % Although not used here, it is also possible to have a \subsubsection{}
 \subsection{Open (male), SN 54673}
 
- \begin{center} % Centered horizontally on the page
- 
- % If the report text is wider, it is too wide for tables 
- \begin{singlespace}
- 
- 	\small	% use a smaller font size for the table entries
+\begin{center} 
+\begin{singlespace}
+ 	\small	% smaller font size for the table entries
  
   	% Increases the vertical spacing between rows slightly  
   	\setlength{\extrarowheight}{3pt}
@@ -61,9 +54,9 @@ Measurements of the voltage reflection coefficient were made according to proced
     		\multicolumn{2}{c}{ \text{phase} } 
     		\\
 		% 2nd line 
-    		\multicolumn{1}{c}{ \si{(MHz)} } &  
-    		\multicolumn{2}{c}{ (\text{linear}) } &
-    		\multicolumn{2}{c}{ \text{(/degree)} } 
+    		\multicolumn{1}{c}{ (/\si{\mega\hertz}) } &  
+    		\multicolumn{2}{c}{  } &
+    		\multicolumn{2}{c}{ (/\si{\degree}) } 
     		\\
   		% 3rd line 
      		& {\rho} & {U(\rho)} & {\phi} & {U(\phi)} 
@@ -89,24 +82,22 @@ Measurements of the voltage reflection coefficient were made according to proced
 		
 		\end{array}
 	\]
-	\LMICaption{figure}{fig1}{%
-	    Magnitude and phase data. Results are reported in polar coordinates 
-	    (magnitude, $\rho$, and phase, $\phi$), using a linear scale for magnitude
-	     and units of degrees for phase. For values decorated by a $\dagger$, see        
-	     the Uncertainty section.
-	}
+	\LMICaption{table}{tab1}{%
+Magnitude and phase data, using a linear scale for magnitude and units of degrees for phase. 
+Expanded uncertainties decorated by a $\dagger$ fall outside the scope of accreditation (see Uncertainty section).
+}
 	
 \end{singlespace}
 \end{center}
 
-
 \section{Uncertainty}
-A coverage factor $k=1.96$ was used to calculate the expanded uncertainties $U(\cdot)$ at a level of confidence of approximately 95\%. The number of degrees of freedom associated with each measurement result was large enough to justify this coverage factor.  
+A coverage factor $k=1.96$ was used to calculate the expanded uncertainties $U(\cdot)$ at a level of confidence of approximately \SI{95}{\percent}. 
+The number of degrees of freedom associated with each measurement result was large enough to justify this coverage factor.  
 
-Some of the expanded uncertainty values reported fall outside LNI's current scope of accreditation. These values are decorated by a $\dagger$ in Figure~\ref{fig1}. The least expanded uncertainty for a magnitude measurement close to unity in the LNI scope of accreditation is currently 0.0024. 
+Some of the expanded uncertainty values reported fall outside LMI's current scope of accreditation. 
+These values are decorated by a $\dagger$ in Table~\ref{tab1}. 
+The least expanded uncertainty for a measured magnitude close to unity in the LMI scope of accreditation is currently 0.0024. 
 
-% A \paragraph is a lower hierarchy section. The 'heading' text is in bold
-% and the 'body' text follows on the same line.
 \paragraph{Note:} \referenceGUM	% Standard reference to the GUM
 
 \embedfile[mimetype=application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]{ex_data.xlsx}
