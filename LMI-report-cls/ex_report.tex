@@ -32,26 +32,22 @@ Measurements of the voltage reflection coefficient were made according to proced
 \clearpage    % Anticipate the page break
 \section{Results}
  
-
-% Although not used here, it is also possible to have a \subsubsection{}
 \subsection{Open (male), SN 54673}
 
 \begin{center} 
-\begin{singlespace}
  	\small	% smaller font size for the table entries
  
   	% Increases the vertical spacing between rows slightly  
   	\setlength{\extrarowheight}{3pt}
   
-	\[
 		% the 'S' array column type will align numbers on the decimal 
         % Note 'S[group-minimum-digits=3]' or '\sisetup{group-minimum-digits=3 }'
         % would be used to force a space separator every 3 digits (this
         % does not happen by default until there more than 4 digits)
-  		\begin{array}{SSSSS}
-    		\multicolumn{1}{c}{ \text{frequency} } & 
-    		\multicolumn{2}{c}{ \text{magnitude} } &
-    		\multicolumn{2}{c}{ \text{phase} } 
+  		\begin{tabular}{SSSSS}
+    		\multicolumn{1}{c}{ frequency } & 
+    		\multicolumn{2}{c}{ magnitude } &
+    		\multicolumn{2}{c}{ phase } 
     		\\
 		% 2nd line 
     		\multicolumn{1}{c}{ (/\si{\mega\hertz}) } &  
@@ -59,11 +55,10 @@ Measurements of the voltage reflection coefficient were made according to proced
     		\multicolumn{2}{c}{ (/\si{\degree}) } 
     		\\
   		% 3rd line 
-     		& {\rho} & {U(\rho)} & {\phi} & {U(\phi)} 
+     		& $\rho$ & ${U(\rho)}$ & $\phi$ & ${U(\phi)}$ 
      		\\ \hline % Underline the headings
 
   		%%-----------------------------------------------
-  		% Data here
 		45 &   0.9998 &   0.0023$^\dagger$ &    -1.46 &     0.13     \\
 		50 &   0.9998 &   0.0023$^\dagger$ &    -1.62 &     0.13     \\
 		100 &   0.9999 &   0.0023$^\dagger$ &    -3.27 &     0.13    \\
@@ -80,14 +75,13 @@ Measurements of the voltage reflection coefficient were made according to proced
 		9000 &    0.996 &    0.018 &    +62.7 &      1.1  \\
 		%%-----------------------------------------------
 		
-		\end{array}
-	\]
+        \end{tabular}
+        
 	\LMICaption{table}{tab1}{%
 Magnitude and phase data, using a linear scale for magnitude and units of degrees for phase. 
 Expanded uncertainties decorated by a $\dagger$ fall outside the scope of accreditation (see Uncertainty section).
 }
 	
-\end{singlespace}
 \end{center}
 
 \section{Uncertainty}

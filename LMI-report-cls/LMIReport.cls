@@ -216,7 +216,7 @@ A PDF version is available on-line:
         pdftitle={\ReportTitle},
         pdfauthor={\LMI},
         pdfnumpages={\pageref*{LastPage}},
-%        pdfpagemode={UseAttachments}
+        pdfpagemode={UseAttachments}    % Prompts PDF reader
     }
 }
 %%-------------------------------------------------------------------
