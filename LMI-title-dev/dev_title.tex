@@ -31,6 +31,12 @@
 \newcommand{\ChiefMetrologist}[1]{\renewcommand{\ChiefMetrologist}{#1}}
 \makeatother
 
+%% This command composes shows who has been involved in the report. 
+\newcommand{\MetrologyTeam}{
+           \Metrologist \\
+    \textbf{Authorised by:} \> \ChiefMetrologist
+}
+
 %% Paragraph formatting
 \usepackage{parskip}         
 
@@ -38,12 +44,6 @@
 %% The complier must be run twice to find the LastPage number.
 \usepackage{lastpage}       
 \newcommand{\thispageof}{Page~\thepage~of~\pageref*{LastPage}}
-
-%% This command composes shows who has been involved in the report. 
-\newcommand{\MetrologyTeam}{
-           \Metrologist \\
-    \textbf{Authorised by:} \> \ChiefMetrologist
-}
 
 %% A command to produce the title page
 \newcommand{\maketitlepage}{%
