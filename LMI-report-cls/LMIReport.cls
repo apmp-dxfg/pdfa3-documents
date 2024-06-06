@@ -215,7 +215,6 @@ A PDF version is available on-line:
     \hypersetup{
         pdftitle={\ReportTitle},
         pdfauthor={\LMI},
-        pdfnumpages={\pageref*{LastPage}},
         pdfpagemode={UseAttachments}    % Prompts PDF reader
     }
 }
